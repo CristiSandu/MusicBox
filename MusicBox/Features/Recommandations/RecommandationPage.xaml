@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MusicBox.Features.Recommandations"
+             xmlns:card="clr-namespace:MusicBox.Controls.Cards"
+             Shell.NavBarIsVisible="False"
+             x:DataType="vm:RecommandationPageViewModel"
+             x:Class="MusicBox.Features.Recommandations.RecommandationPage">
+    <Grid RowDefinitions="auto, *">
+        <Button Text="Get A Recomandation"
+                Command="{Binding GetTracksCommand}" />
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Tracks}"
+                        Margin="30,0">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Span="2"
+                                 Orientation="Vertical"
+                                 VerticalItemSpacing="32"
+                                 HorizontalItemSpacing="24" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="vm:TrackModel">
+                    <card:TracksCard SelectionStatusColor="{Binding SelectionColor}"
+                                     ArtistName="{Binding Artist}"
+                                     TrackName="{Binding SongName}"
+                                     AlbumImage="{Binding ImageLink}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MusicBox.Features.ColdStart.Selection"
+             x:DataType="vm:SelectionPageViewModel"
+             x:Class="MusicBox.Features.ColdStart.Selection.SelectionPage"
+             Shell.NavBarIsVisible="False"
+             Title="SelectionPage">
+    <Grid RowDefinitions="*,2*,.8*">
+        <Label Text="Music Box"
+               Style="{StaticResource MainTitle}"
+               VerticalOptions="Center"
+               HorizontalOptions="Center" />
+
+        <Border Grid.Row="1"
+                Margin="32,0"
+                BackgroundColor="#fbfbfb"
+                StrokeThickness="0"
+                Style="{StaticResource CustomButtons}">
+            <VerticalStackLayout VerticalOptions="CenterAndExpand"
+                                 Padding="12"
+                                 Margin="26"
+                                 Spacing="12">
+                <Border  Style="{StaticResource CustomButtons}">
+                    <VerticalStackLayout>
+                        <Label HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span Text="Import playlist&#x0a;"
+                                              Style="{StaticResource MainTitle}"
+                                              FontSize="24" />
+                                        <Span Text=""
+                                              TextColor="{StaticResource GreenSpotify}"
+                                              Style="{StaticResource MainTitle}"
+                                              FontSize="24" />
+                                        <Span Text="Spotify"
+                                              TextColor="{StaticResource GreenSpotify}"
+                                              Style="{StaticResource MainTitle}"
+                                              FontSize="24" />
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                </Border>
+                <Label Text="OR"
+                       HorizontalTextAlignment="Center"
+                       Style="{StaticResource MainTitle}" />
+
+                <Border  Style="{StaticResource CustomButtons}">
+                    <VerticalStackLayout>
+                        <Label HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span Text="Select&#x0a;"
+                                              Style="{StaticResource MainTitle}"
+                                              FontSize="24" />
+                                        <Span Text="Preferences"
+                                              Style="{StaticResource MainTitle}"
+                                              FontSize="24" />
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToPreferencesCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+            </VerticalStackLayout>
+        </Border>
+
+    </Grid>
+</ContentPage>

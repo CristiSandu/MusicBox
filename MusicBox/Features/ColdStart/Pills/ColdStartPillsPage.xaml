@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicBox.Features.ColdStart.Pills.ColdStartPillsPage"
+             xmlns:btn="clr-namespace:MusicBox.Controls.Buttons.Base"
+             xmlns:chip="clr-namespace:MusicBox.Controls.Buttons.Chips"
+             xmlns:vm="clr-namespace:MusicBox.Features.ColdStart.Pills"
+             x:DataType="vm:ColdStartPillsPageViewModel"
+             Shell.NavBarIsVisible="False"
+             Title="ColdStartPillsPage">
+    <Grid RowDefinitions="*,2*,.8*"
+          ColumnDefinitions="*,*"
+         
+          ColumnSpacing="32">
+
+        <Label Grid.ColumnSpan="2"
+               Text="Music Box"
+               Style="{StaticResource MainTitle}"
+               VerticalOptions="Center"
+               HorizontalOptions="Center" />
+
+        <VerticalStackLayout Grid.Row="1"
+                             Grid.ColumnSpan="2">
+            <Label Text="Genre"
+                   Margin="12,0"
+                   Style="{StaticResource MainTitle}"
+                   FontSize="24" />
+
+            <chip:ChipsView Margin="0,0,0,0"
+                            SelectionColor="{StaticResource SelectedPillColor}"
+                            ListSpan="2"
+                            UnSelectionColor="{StaticResource UnSelectedPillColor}"
+                            TextColorValue="White"
+                            MultipleSelection="True"
+                            TapCommand="{Binding GetPillsValuesCommand}"
+                            Values="{Binding Genre}" />
+
+            <Label Text="Artists"
+                   Margin="12,0"
+                   Style="{StaticResource MainTitle}"
+                   FontSize="24" />
+
+            <chip:ChipsView Margin="0,0,0,0"
+                            SelectionColor="{StaticResource SelectedPillColor}"
+                            ListSpan="2"
+                            UnSelectionColor="{StaticResource UnSelectedPillColor}"
+                            TextColorValue="White"
+                            MultipleSelection="True"
+                            TapCommand="{Binding GetPillsValuesCommand}"
+                            Values="{Binding Artists}" />
+            
+            <Label Text="Period"
+                   Margin="12,0"
+                   Style="{StaticResource MainTitle}"
+                   FontSize="24" />
+
+            <chip:ChipsView Margin="0,0,0,0"
+                            SelectionColor="{StaticResource SelectedPillColor}"
+                            ListSpan="2"
+                            UnSelectionColor="{StaticResource UnSelectedPillColor}"
+                            TextColorValue="White"
+                            MultipleSelection="True"
+                            TapCommand="{Binding GetPillsValuesCommand}"
+                            Values="{Binding Period}" />
+        </VerticalStackLayout>
+
+
+        <btn:BaseButton Grid.Column="0"
+                        Grid.Row="2"
+                        Name="Back"
+                        Margin="24,0"
+                        VerticalOptions="Center" 
+                        Command="{Binding GoToCommand}"
+                        CommandParameter=".."/>
+        <btn:BaseButton Grid.Column="1"
+                        Grid.Row="2"
+                        Margin="24,0"
+                        Name="Next"
+                        VerticalOptions="Center"
+                        Command="{Binding GoToCommand}"
+                        CommandParameter="MainPage"/>
+    </Grid>
+</ContentPage>

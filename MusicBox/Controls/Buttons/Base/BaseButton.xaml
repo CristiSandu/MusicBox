@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Button xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        x:Class="MusicBox.Controls.Buttons.Base.BaseButton"
+        x:Name="customButton"
+        CornerRadius="8"
+        BackgroundColor="{StaticResource MainColor}"
+        FontSize="20"
+        TextColor="{StaticResource TextColor}"
+        Padding="0,4,0,2"
+        Text="{Binding Name, Source={x:Reference customButton}}"
+        FontFamily="PPSB">
+    <Button.Shadow>
+        <Shadow Brush="Black"
+                Offset="0,15"
+                Opacity="0.2" />
+    </Button.Shadow>
+</Button>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MusicBox.Features.Recommandations"
+             xmlns:btn="clr-namespace:MusicBox.Controls.Buttons.Base"
+             Shell.NavBarIsVisible="False"
+             x:DataType="vm:RecommandationPageViewModel"
+             x:Class="MusicBox.Features.Home.MainPage">
+    <Grid RowDefinitions="*,2*,.8*"
+          ColumnDefinitions="*,*"
+          ColumnSpacing="32">
+        <Label Grid.ColumnSpan="2"
+               Text="Music Box"
+               Style="{StaticResource MainTitle}"
+               VerticalOptions="Center"
+               HorizontalOptions="Center" />
+
+        <Border Grid.Row="1"
+                Grid.ColumnSpan="2"
+                VerticalOptions="Center"
+                Padding="0,24"
+                Margin="32,0"
+                Style="{StaticResource CustomButtons}">
+            <Label HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="Give Me Some&#x0a;"
+                                  Style="{StaticResource MainTitle}"
+                                  FontSize="24" />
+                            <Span Text="Recommendations 💡"
+                                  Style="{StaticResource MainTitle}"
+                                  FontSize="24" />
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToCommand}"
+                                      CommandParameter="RecommandationPage" />
+            </Border.GestureRecognizers>
+        </Border>
+
+        <btn:BaseButton Grid.Column="0"
+                        Grid.Row="2"
+                        Name="Back"
+                        Margin="32,0"
+                        VerticalOptions="Center"
+                        Command="{Binding GoToCommand}"
+                        CommandParameter=".." />
+
+    </Grid>
+</ContentPage>
