@@ -6,4 +6,6 @@ public interface ISpotifyService
 {
     Task<SpotifyClient> GetSpotifyAuthToken();
     SpotifyClient GetTokenOnDemand();
+    void LoginWithBearer();
+
 }

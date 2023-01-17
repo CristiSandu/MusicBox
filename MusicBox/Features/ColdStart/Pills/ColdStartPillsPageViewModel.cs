@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MusicBox.Features.Home;
 
 namespace MusicBox.Features.ColdStart.Pills;
 
@@ -61,5 +62,13 @@ public partial class ColdStartPillsPageViewModel : BaseViewModel
     private async void GetPillsValues(List<string> selections)
     {
 
+    }
+
+    [RelayCommand]
+    private async void SavePillSelectedValues()
+    {
+        Utils.Settings.IsColdStartDone = true;
+
+        await Shell.Current.GoToAsync(nameof(MainPage));
     }
 }

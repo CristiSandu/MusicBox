@@ -5,7 +5,7 @@
 
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color"
-                Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
+                Value="{StaticResource Primary}" />
     </Style>
 
     <Style TargetType="IndicatorView">
@@ -115,7 +115,7 @@
 
     <Style TargetType="Editor">
         <Setter Property="TextColor"
-                Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+                Value="{StaticResource Black}" />
         <Setter Property="BackgroundColor"
                 Value="Transparent" />
         <Setter Property="FontFamily"
@@ -145,7 +145,7 @@
 
     <Style TargetType="Entry">
         <Setter Property="TextColor"
-                Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+                Value="{StaticResource Black}" />
         <Setter Property="BackgroundColor"
                 Value="Transparent" />
         <Setter Property="FontFamily"
@@ -497,7 +497,7 @@
         <Setter Property="Padding"
                 Value="0" />
         <Setter Property="BackgroundColor"
-                Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+                Value="White" />
     </Style>
 
     <Style TargetType="Shell"
@@ -562,10 +562,21 @@
                 Value="Bold" />
         <Setter Property="FontFamily"
                 Value="PPSB" />
+        <Setter Property="TextColor"
+                Value="White" />
         <Setter Property="BackgroundColor"
                 Value="{StaticResource MainColor}" />
     </Style>
 
+    <Style x:Key="TitleStyle"
+           TargetType="Label">
+        <Setter Property="FontSize"
+                Value="20" />
+        <Setter Property="FontAttributes"
+                Value="Bold" />
+        <Setter Property="FontFamily"
+                Value="PPSB" />
+    </Style>
 
     <Style x:Key="CustomButtons"
            TargetType="Border">

@@ -2,10 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MusicBox.Features.ColdStart.Selection"
+             xmlns:icons="clr-namespace:MusicBox.Utils"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              x:DataType="vm:SelectionPageViewModel"
              x:Class="MusicBox.Features.ColdStart.Selection.SelectionPage"
              Shell.NavBarIsVisible="False"
              Title="SelectionPage">
+
+    <Page.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="#ffffff"
+                               StatusBarStyle="DarkContent" />
+    </Page.Behaviors>
+
     <Grid RowDefinitions="*,2*,.8*">
         <Label Text="Music Box"
                Style="{StaticResource MainTitle}"
@@ -30,11 +38,12 @@
                                         <Span Text="Import playlist&#x0a;"
                                               Style="{StaticResource MainTitle}"
                                               FontSize="24" />
-                                        <Span Text=""
+                                        <Span Text="{x:Static icons:IconFont.Spotify}"
+                                              FontFamily="MOON"
                                               TextColor="{StaticResource GreenSpotify}"
                                               Style="{StaticResource MainTitle}"
                                               FontSize="24" />
-                                        <Span Text="Spotify"
+                                        <Span Text=" Spotify"
                                               TextColor="{StaticResource GreenSpotify}"
                                               Style="{StaticResource MainTitle}"
                                               FontSize="24" />
@@ -43,6 +52,9 @@
                             </Label.FormattedText>
                         </Label>
                     </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding EnterPlaylistLinkCommand}" />
+                    </Border.GestureRecognizers>
                 </Border>
                 <Label Text="OR"
                        HorizontalTextAlignment="Center"

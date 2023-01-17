@@ -10,6 +10,8 @@ using MusicBox.Features.Login;
 using MusicBox.Features.Recommandations;
 using MusicBox.Services;
 using MusicBox.Services.Interfaces;
+using MusicBox.Features.SongList;
+using MusicBox.Features.Settings;
 #if IOS
 using UIKit;
 using CoreGraphics;
@@ -31,6 +33,7 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("Poppins-Medium-500.ttf", "PPM");
                 fonts.AddFont("Poppins-SemiBold-600.ttf", "PPSB");
+                fonts.AddFont("icomoon.ttf", "MOON");
             })
             .CustomComportament();
 
@@ -41,14 +44,18 @@ public static class MauiProgram
         ImageHandler.Mapper.PrependToMapping(nameof(Microsoft.Maui.IImage.Source), (handler, view) => PrependToMappingImageSource(handler, view));
 #endif
 
-        builder.Services.AddTransient<ISpotifyService, SpotifyService>();
-        builder.Services.AddTransient<IAuthService, AuthService>();
+        builder.Services.AddSingleton<ISpotifyService, SpotifyService>();
+        builder.Services.AddSingleton<IAuthService, AuthService>();
+        builder.Services.AddSingleton<SongsDatabse>();
 
         builder.Services.AddSingleton<MainPage, MainPageViewModel>();
         builder.Services.AddSingleton<LoginPage, LoginPageViewModel>();
         builder.Services.AddSingleton<SelectionPage, SelectionPageViewModel>();
         builder.Services.AddSingleton<ColdStartPillsPage, ColdStartPillsPageViewModel>();
-        builder.Services.AddSingleton<RecommandationPage, RecommandationPageViewModel>();
+        builder.Services.AddTransient<RecommandationPage, RecommandationPageViewModel>();
+        builder.Services.AddTransient<SongListPage, SongListPageViewModel>();
+        builder.Services.AddSingleton<SettingsPage>();
+
 
         return builder.Build();
     }

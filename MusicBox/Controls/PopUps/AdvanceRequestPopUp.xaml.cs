@@ -4,6 +4,7 @@ namespace MusicBox.Controls.PopUps;
 
 public partial class AdvanceRequestPopUp : Popup
 {
+    int count = 0;
     public AdvanceRequestPopUp()
     {
         InitializeComponent();
@@ -16,14 +17,22 @@ public partial class AdvanceRequestPopUp : Popup
 
         if (btn.Text == "Cancel")
         {
-            Close();
+            Close(true);
             return;
         }
 
-        if ((BindingContext as AdvanceRequestPopUpViewModel).CustomRequest != null)
+        if ((BindingContext as AdvanceRequestPopUpViewModel).PlaylistLink != null)
         {
-            (BindingContext as AdvanceRequestPopUpViewModel).RequestAdvancedRecomandationCommand.Execute(null);
-            Close();
+            if (count == 0)
+            {
+                (BindingContext as AdvanceRequestPopUpViewModel).ImportPlaylistDataCommand.Execute(null);
+                count++;
+                return;
+            }
+            else
+            {
+                Close(false);
+            }
         }
     }
 }

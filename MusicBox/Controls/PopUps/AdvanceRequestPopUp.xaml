@@ -13,14 +13,16 @@
               ColumnDefinitions="*,*"
               ColumnSpacing="12"
               RowSpacing="12">
-            <Label Text="Enter a custom present request!"
+            <Label Text="{Binding PlaylistName}"
                    Grid.ColumnSpan="2"
-                   Style="{StaticResource TitleStyle}"
+                   Style="{StaticResource MainTitle}"
+                   FontSize="20"
                    HorizontalOptions="Center"
                    VerticalOptions="Center" />
             <Border Grid.Row="1"
                     Grid.ColumnSpan="2"
                     Grid.RowSpan="2"
+                    IsVisible="{Binding IsNotImageVisible}"
                     BackgroundColor="White"
                     StrokeShape="RoundRectangle 15,15,15,15">
                 <Border.Padding>
@@ -31,12 +33,24 @@
                             Value="0,12" />
                     </OnPlatform>
                 </Border.Padding>
-                <Editor Placeholder="⚠The answer will come in a maximum 1 day!⚠"
-                        Text="{Binding CustomRequest}"
+                <Editor Placeholder="Link ..."
+                        Text="{Binding PlaylistLink}"
                         PlaceholderColor="{StaticResource Gray500}"
                         TextColor="Black"
                         FontFamily="PPSB" />
             </Border>
+
+            <Image Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   Grid.RowSpan="2"
+                   IsVisible="{Binding IsImageVisible}"
+                   Source="{Binding PlaylistLinkImage}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   Aspect="Fill"
+                   HeightRequest="150"
+                   WidthRequest="150" />
+
             <Button Grid.Row="3"
                     Grid.Column="0"
                     Text="Send"

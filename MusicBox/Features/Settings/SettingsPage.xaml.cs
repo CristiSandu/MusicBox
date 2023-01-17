@@ -17,8 +17,7 @@ public partial class SettingsPage : ContentPage
     }
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        Utils.Settings.IsLogIn = false;
-
+        Preferences.Clear();
         await Shell.Current.GoToAsync("//LoginPage");
     }
 
@@ -26,10 +25,5 @@ public partial class SettingsPage : ContentPage
     protected override void OnNavigatedTo(NavigatedToEventArgs args)
     {
         base.OnNavigatedTo(args);
-    }
-
-    private void Button_Clicked_1(object sender, EventArgs e)
-    {
-        FeedbackEditor.Text = string.Empty;
     }
 }

@@ -3,16 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MusicBox.Features.Recommandations"
              xmlns:card="clr-namespace:MusicBox.Controls.Cards"
+             xmlns:btn="clr-namespace:MusicBox.Controls.Buttons.Base"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              Shell.NavBarIsVisible="False"
              x:DataType="vm:RecommandationPageViewModel"
              x:Class="MusicBox.Features.Recommandations.RecommandationPage">
-    <Grid RowDefinitions="auto, *">
-        <Button Text="Get A Recomandation"
-                Command="{Binding GetTracksCommand}" />
 
-        <CollectionView Grid.Row="1"
+    <Page.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="#ffffff"
+                               StatusBarStyle="DarkContent" />
+    </Page.Behaviors>
+
+    <Grid>
+        <CollectionView x:Name="songList"
+                        SelectionMode="Single"
                         ItemsSource="{Binding Tracks}"
-                        Margin="30,0">
+                        SelectedItem="{Binding SelectedElement}">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Span="2"
                                  Orientation="Vertical"
@@ -24,9 +30,64 @@
                     <card:TracksCard SelectionStatusColor="{Binding SelectionColor}"
                                      ArtistName="{Binding Artist}"
                                      TrackName="{Binding SongName}"
-                                     AlbumImage="{Binding ImageLink}" />
+                                     AlbumImage="{Binding ImageLink}"
+                                     SongUrl="{Binding SongURL}"
+                                     PlaySongCommand="{Binding Path=BindingContext.PlaySongCommand, Source={Reference songList}}" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+
+            <CollectionView.Header>
+                <Label Text="Music Box"
+                       Margin="0,56"
+                       Style="{StaticResource MainTitle}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+            </CollectionView.Header>
+
+            <CollectionView.Footer>
+                <Grid RowDefinitions="*,*"
+                      ColumnDefinitions="*,*,*"
+                      RowSpacing="24"
+                      Margin="24"
+                      ColumnSpacing="12">
+                    <Label Grid.ColumnSpan="2"
+                           Style="{StaticResource MainTitle}"
+                           FontSize="20">
+                        <Label.Text>
+                            <MultiBinding StringFormat="{}{0}/{1} Track Liked">
+                                <Binding Path="SelectedColorsCount" />
+                                <Binding Path="TotalCount" />
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
+
+                    <btn:BaseButton Grid.Column="2"
+                                    Name="Save" 
+                                    Command="{Binding GetUsersTopTrackCommand}"/>
+
+
+                    <btn:BaseButton Grid.Column="0"
+                                    Grid.Row="2"
+                                    Name="Back"
+                                    Command="{Binding GoToCommand}"
+                                    CommandParameter=".." />
+
+                </Grid>
+            </CollectionView.Footer>
         </CollectionView>
+
+        <Border Stroke="Transparent"
+                Margin="-4"
+                Opacity="1"
+                BackgroundColor="White"
+                IsVisible="{Binding IsBusy}">
+            <VerticalStackLayout VerticalOptions="Center"
+                                 HorizontalOptions="Center">
+                <ActivityIndicator IsVisible="{Binding IsBusy}"
+                                   IsRunning="{Binding IsBusy}"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Border>
     </Grid>
 </ContentPage>

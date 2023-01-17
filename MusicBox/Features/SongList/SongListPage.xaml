@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicBox.Features.SongList.SongListPage"
+             xmlns:track="clr-namespace:MusicBox.Features.Recommandations"
+             xmlns:vm="clr-namespace:MusicBox.Features.SongList"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             Shell.NavBarIsVisible="False"
+             x:DataType="vm:SongListPageViewModel"
+             Title="SongListPage">
+
+    <Page.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="#ffffff"
+                               StatusBarStyle="DarkContent" />
+    </Page.Behaviors>
+
+    <Grid RowDefinitions=".8*,2*">
+        <Label Text="Music Box"
+               Style="{StaticResource MainTitle}"
+               VerticalOptions="Center"
+               HorizontalOptions="Center" />
+
+        <Label Text="{Binding MainTitle}"
+               Style="{StaticResource MainTitle}"
+               FontSize="26"
+               VerticalOptions="End"
+               HorizontalOptions="Center" />
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Tracks}"
+                        Margin="0,0">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="12" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="track:TrackModel">
+                    <Grid ColumnDefinitions="auto,*,.1*"
+                          RowDefinitions="*,*"
+                          ColumnSpacing="4">
+                        <Image Grid.RowSpan="2"
+                               Margin="8,0,8,0"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"
+                               Source="{Binding ImageLink}"
+                               Aspect="AspectFill"
+                               HeightRequest="40"
+                               WidthRequest="40" />
+
+                        <Label Grid.Column="1"
+                               Text="{Binding SongName}"
+                               VerticalOptions="Center"
+                               LineBreakMode="TailTruncation"
+                               FontSize="20"
+                               FontFamily="PPM"
+                               Style="{StaticResource MainTitle}" />
+
+                        <Label Grid.Column="1"
+                               Grid.Row="1"
+                               Text="{Binding Artist}"
+                               VerticalOptions="Center"
+                               FontSize="13"
+                               Style="{StaticResource MainTitle}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

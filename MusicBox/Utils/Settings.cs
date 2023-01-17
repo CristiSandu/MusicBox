@@ -6,7 +6,11 @@ public static class Settings
     const int theme = 1;
     const string userName = "unknow";
     const string email = "unknow";
+    const string playlistName = "none";
     const bool isLogIn = false;
+    const bool isColdStartDone = false;
+
+
 
     public static int Theme
     {
@@ -26,10 +30,22 @@ public static class Settings
         set => Preferences.Set(nameof(Email), value);
     }
 
+    public static string PlaylistName
+    {
+        get => Preferences.Get(nameof(PlaylistName), playlistName);
+        set => Preferences.Set(nameof(PlaylistName), value);
+    }
+
     public static bool IsLogIn
     {
         get => Preferences.Get(nameof(IsLogIn), isLogIn);
         set => Preferences.Set(nameof(IsLogIn), value);
+    }
+
+    public static bool IsColdStartDone
+    {
+        get => Preferences.Get(nameof(IsColdStartDone), isColdStartDone);
+        set => Preferences.Set(nameof(IsColdStartDone), value);
     }
 
     public static void SetTheme()
